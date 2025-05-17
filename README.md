@@ -97,19 +97,21 @@ sudo -u postgres psql
 ```
 Once inside the PostgreSQL shell, run the following SQL commands to create a new database user and a database for the project:
 
--- Create a new user with a password
+Create a new user with a password:
 ```ini
-CREATE USER user WITH PASSWORD 'password';
+CREATE USER "user" WITH PASSWORD 'password';
 ```
 
--- Create a new database named 'task'
+Create a new database named 'task':
+```ini
 CREATE DATABASE task;
-
--- Grant all privileges on the 'task' database to the new user
-GRANT ALL PRIVILEGES ON DATABASE task TO user;
-
--- Exit the PostgreSQL shell
+```
+Exit the PostgreSQL shell:
+```ini
 \q
+```
+
+Open the file /etc/systemd/system/fastapi-task.service with the vim editor and paste the following content into it and then save it
 
 ```ini
 # /etc/systemd/system/fastapi-task.service
@@ -131,15 +133,8 @@ WantedBy=multi-user.target
 Then run:
 
 ```bash
+sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable fastapi-task
 sudo systemctl start fastapi-task
 ```
-
----
-
-## 🧩 Notes
-
-- Make sure to run database migrations if needed.
-- Adjust your `.env` and database settings based on your environment.
-- Always rebuild your Docker containers after changing dependencies.
