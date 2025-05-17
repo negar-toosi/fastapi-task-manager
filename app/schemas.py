@@ -5,11 +5,13 @@ class TaskBase(BaseModel):
     description: str
     is_completed: bool 
 
+    class Config:
+        from_attributes = True
+        
 class TaskCreate(TaskBase):
     pass
 
 class TaskRead(TaskBase):
     id: int
 
-    class Config:
-        orm_mode = True
+    
