@@ -98,7 +98,9 @@ sudo -u postgres psql
 Once inside the PostgreSQL shell, run the following SQL commands to create a new database user and a database for the project:
 
 -- Create a new user with a password
+```ini
 CREATE USER user WITH PASSWORD 'password';
+```
 
 -- Create a new database named 'task'
 CREATE DATABASE task;
